@@ -1,0 +1,36 @@
+# Core
+fastapi
+uvicorn[standard]
+pydantic>=2.0
+pydantic-settings
+
+# LLM
+langchain
+langchain-groq
+groq
+instructor
+
+# Guardrails
+guardrails-ai
+presidio-analyzer
+presidio-anonymizer
+transformers
+torch          # CPU only — no CUDA
+spacy
+
+# Redis
+redis
+hiredis
+
+# Testing
+pytest
+pytest-asyncio
+httpx
+
+# Demo
+gradio
+
+# Utilities
+python-dotenv
+structlog
+tenacity
