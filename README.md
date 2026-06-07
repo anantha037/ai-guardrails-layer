@@ -95,10 +95,16 @@ ai-guardrails-layer/
 ## Guardrails Detail
 
 ### Prompt Injection Detection
-Analyzes user inputs against 7 core pattern categories: ignore_instructions, role_override, jailbreak_keywords, system_prompt_injection, token_manipulation, data_exfiltration, privilege_escalation. Mention confidence scoring (0.6 / 0.85 / 1.0 based on number of matches). Pure regex, zero latency.
+Analyzes user inputs against 7 pattern categories: ignore_instructions, role_override,
+jailbreak_keywords, system_prompt_injection, token_manipulation, data_exfiltration,
+and privilege_escalation. Confidence scoring is graded — 0.6 for one match, 0.85 for
+two, 1.0 for three or more. Pure regex with zero latency, no external model calls.
 
 ### PII Detection and Masking
-Explains Presidio handles standard PII (names, emails, phones, credit cards). Custom regex recognizers added for Aadhaar (12-digit, spaced and plain formats) and PAN (AAABB1234C format). Two masking modes: replace ([AADHAAR_NUMBER]) and redact. Raw PII never reaches the LLM.
+Presidio handles standard PII (names, emails, phones, credit cards) out of the box.
+Custom regex recognizers are added for Aadhaar (12-digit, spaced and plain formats)
+and PAN (AAABB1234C format). Two masking modes: replace ([AADHAAR_NUMBER]) or redact.
+Raw PII never reaches the LLM — the masked input is what gets classified and sent.
 
 ### Toxicity Filtering
 HuggingFace pipeline using martin-ha/toxic-comment-model. Runs on CPU with device=-1. Score threshold configurable (default 0.7). Runs on masked input so PII-stripped text is what gets classified.
