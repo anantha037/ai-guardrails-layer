@@ -1,5 +1,7 @@
 # 🛡️ AI Guardrails Layer
 
+![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?logo=fastapi&logoColor=white) ![License](https://img.shields.io/badge/License-MIT-green) ![Tests](https://img.shields.io/badge/Tests-26%20passed-brightgreen) ![Redis](https://img.shields.io/badge/Redis-7-red?logo=redis&logoColor=white) ![HuggingFace](https://img.shields.io/badge/HuggingFace-Transformers-yellow?logo=huggingface&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white) ![CPU Only](https://img.shields.io/badge/Hardware-CPU%20Only-lightgrey)
+
 Production-grade safety middleware that sits between user input and any LLM — detecting prompt injection, masking PII, filtering toxicity, and enforcing structured outputs.
 
 ## Overview
@@ -151,6 +153,19 @@ curl -X POST http://localhost:8000/chat \
 }
 ```
 
+## Demo
+
+### Gradio UI
+
+Run `python demo/app.py` and open http://localhost:7860 to access the interactive demo.
+
+**Preset test cases included:**
+- ✅ Safe question → All 5 guardrails pass, LLM responds
+- 🚫 Prompt injection → Blocked at injection check, reason shown
+- 🔒 Aadhaar + PAN input → PII masked before reaching LLM
+- 🚫 Toxic message → Blocked at toxicity filter (score: 0.96)
+- ✅ Technical question → Full pipeline passes, structured response
+
 ## Quick Start
 
 ### Prerequisites
@@ -160,7 +175,7 @@ curl -X POST http://localhost:8000/chat \
 
 ### Installation
 
-```powershell
+```bash
 git clone https://github.com/anantha037/ai-guardrails-layer.git
 cd ai-guardrails-layer
 python -m venv venv
@@ -176,28 +191,28 @@ APP_ENV=development
 ```
 
 Start Redis:
-```powershell
+```bash
 docker-compose up redis -d
 ```
 
 Start API:
-```powershell
+```bash
 uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 Run demo:
-```powershell
+```bash
 python demo/app.py
 ```
 Then open http://localhost:7860
 
 ## Running Tests
 
-```powershell
+```bash
 python -m pytest tests/test_guardrails.py -v
 ```
 
-23 tests pass without Redis. 2 Redis-dependent tests auto-skip if Redis is not running.
+26 tests pass without Redis. 2 Redis-dependent tests auto-skip if Redis is not running.
 
 ## Configuration
 
@@ -238,8 +253,6 @@ MIT
 
 ## Author
 
-Anantha Krishnan K.
+**Anantha Krishnan K.**
 ML Engineer | Kerala, India
-GitHub: github.com/anantha037
-LinkedIn: linkedin.com/in/anantha-krishnan-k
-Email: ananthan0377@gmail.com
+[GitHub](https://github.com/anantha037) · [LinkedIn](https://linkedin.com/in/anantha-krishnan-k) · [Email](mailto:ananthan0377@gmail.com)
